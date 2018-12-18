@@ -33,6 +33,8 @@
   "dependencies": {
     "@babel/polyfill": "^7.0.0",
     "@hocs/with-lifecycle": "^0.5.0",
+    "@material-ui/core": "^3.7.0",
+    "@material-ui/icons": "^3.0.1",
     "classnames": "^2.2.6",
     "connected-react-router": "^4.5.0",
     "history": "^4.7.2",

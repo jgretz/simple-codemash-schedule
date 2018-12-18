@@ -3,9 +3,15 @@ import {connect} from 'react-redux';
 import {compose} from 'recompose';
 import withLifecycle from '@hocs/with-lifecycle';
 
+import List from './list';
+
 import {loadCodeMashData} from '../actions';
 
-const Schedule = () => <div>Hello CodeMash</div>;
+const Schedule = () => (
+  <div className="schedule">
+    <List />
+  </div>
+);
 
 const ComposedSchedule = compose(
   withLifecycle({

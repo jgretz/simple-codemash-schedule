@@ -4,11 +4,13 @@ import {compose} from 'recompose';
 import withLifecycle from '@hocs/with-lifecycle';
 
 import List from './list';
+import DaySelection from './daySelection';
 
 import {loadCodeMashData} from '../actions';
 
 const Schedule = () => (
   <div className="schedule">
+    <DaySelection />
     <List />
   </div>
 );

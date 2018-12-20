@@ -1,6 +1,7 @@
-import React, {Fragment} from 'react';
+import React from 'react';
 import {connect} from 'react-redux';
 import {withStyles} from '@material-ui/core/styles';
+import Button from '@material-ui/core/Button';
 import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
 import CardContent from '@material-ui/core/CardContent';
@@ -8,7 +9,7 @@ import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 
-import {toggleFavorite} from '../actions';
+import {toggleFavorite, selectSpeakers} from '../actions';
 
 import {
   speakersForSessionSelector,
@@ -34,13 +35,21 @@ const styles = () => ({
   room: {
     minWidth: 100,
   },
+  speakerButton: {
+    margin: 0,
+    padding: 0,
+  },
 });
+
+const handleSpeakerClick = (speakers, selectSpeakers) => () => {
+  selectSpeakers(speakers);
+};
 
 const handleFavoriteClick = (session, toggleFavorite) => () => {
   toggleFavorite(session.id);
 };
 
-const renderFavorite = (session, isFavorite, toggleFavorite) => (
+const Favorite = ({session, isFavorite, toggleFavorite}) => (
   <IconButton
     aria-label="Add to favorites"
     color={isFavorite ? 'secondary' : 'default'}
@@ -50,8 +59,8 @@ const renderFavorite = (session, isFavorite, toggleFavorite) => (
   </IconButton>
 );
 
-const renderContent = (session, room, categories, classes) => (
-  <Fragment>
+const Content = ({session, room, categories, classes}) => (
+  <CardContent>
     <Typography
       component="p"
       dangerouslySetInnerHTML={{__html: session.description}}
@@ -64,7 +73,7 @@ const renderContent = (session, room, categories, classes) => (
         {categories.map(c => c.name).join(', ')}
       </Typography>
     </div>
-  </Fragment>
+  </CardContent>
 );
 
 const SessionCard = ({
@@ -76,17 +85,34 @@ const SessionCard = ({
   isFavorite,
 
   toggleFavorite,
+  selectSpeakers,
 }) => (
   <Card className={classes.card}>
     <CardHeader
       title={session.title}
-      subheader={speakers.map(s => s.fullName).join(', ')}
-      action={renderFavorite(session, isFavorite, toggleFavorite)}
+      subheader={
+        <Button
+          className={classes.speakerButton}
+          onClick={handleSpeakerClick(speakers, selectSpeakers)}
+        >
+          {speakers.map(s => s.fullName).join(', ')}
+        </Button>
+      }
+      action={
+        <Favorite
+          session={session}
+          isFavorite={isFavorite}
+          toggleFavorite={toggleFavorite}
+        />
+      }
       className="card-header"
     />
-    <CardContent>
-      {renderContent(session, room, categories, classes)}
-    </CardContent>
+    <Content
+      session={session}
+      room={room}
+      categories={categories}
+      classes={classes}
+    />
   </Card>
 );
 
@@ -99,5 +125,5 @@ const mapStateToProps = (state, props) => ({
 
 export default connect(
   mapStateToProps,
-  {toggleFavorite},
+  {toggleFavorite, selectSpeakers},
 )(withStyles(styles)(SessionCard));

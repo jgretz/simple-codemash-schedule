@@ -8,7 +8,7 @@ export default createSelector(
   selectedDaySelector,
   sessionsSelector,
   (day, allSessions) => {
-    const sessions = allSessions.filter(s =>
+    const sessions = (allSessions || []).filter(s =>
       moment(s.startsAt).isSame(day, 'day'),
     );
 

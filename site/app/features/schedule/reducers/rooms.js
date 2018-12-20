@@ -1,13 +1,14 @@
 import {stateReducer} from 'truefit-react-utils';
 import {LOADED_CODEMASH_DATA} from '../actions';
+import {getItemFromStorage, setItemInStorage} from '../../shared/services';
 
 const ROOMS = 'ROOMS';
 
-const INITIAL = localStorage.getItem(ROOMS);
+const INITIAL = getItemFromStorage(ROOMS);
 
 export default stateReducer(INITIAL, {
-  [LOADED_CODEMASH_DATA]: (_, {payload: {rooms}}) => {
-    localStorage.setItem(ROOMS, rooms);
+  [LOADED_CODEMASH_DATA]: (_, {rooms}) => {
+    setItemInStorage(ROOMS, rooms);
 
     return rooms;
   },

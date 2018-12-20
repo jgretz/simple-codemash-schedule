@@ -31,6 +31,9 @@ const styles = () => ({
     alignItems: 'center',
     justifyContent: 'space-between',
   },
+  room: {
+    minWidth: 100,
+  },
 });
 
 const handleFavoriteClick = (session, toggleFavorite) => () => {
@@ -54,7 +57,9 @@ const renderContent = (session, room, categories, classes) => (
       dangerouslySetInnerHTML={{__html: session.description}}
     />
     <div className={classes.contentFooter}>
-      <Typography component="p">{room.name}</Typography>
+      <Typography component="p" className={classes.room}>
+        {room.name}
+      </Typography>
       <Typography component="p">
         {categories.map(c => c.name).join(', ')}
       </Typography>

@@ -14,7 +14,6 @@ const styles = () => ({
   },
   group: {
     margin: '0 auto',
-    minWidth: 500,
     maxWidth: 1000,
   },
 });

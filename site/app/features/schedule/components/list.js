@@ -27,8 +27,8 @@ const groupSessions = sessions => {
   }));
 };
 
-const renderSessionCard = (session, index) => (
-  <SessionCard session={session} index={index} />
+const renderSessionCard = session => (
+  <SessionCard key={session.id} session={session} />
 );
 
 const renderSessionGroup = classes => group => (

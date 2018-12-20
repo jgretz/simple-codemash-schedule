@@ -69,7 +69,6 @@ const renderContent = (session, room, categories, classes) => (
 
 const SessionCard = ({
   classes,
-  index,
   session,
   speakers,
   room,
@@ -78,7 +77,7 @@ const SessionCard = ({
 
   toggleFavorite,
 }) => (
-  <Card key={`${session.id}-${index}`} className={classes.card}>
+  <Card className={classes.card}>
     <CardHeader
       title={session.title}
       subheader={speakers.map(s => s.fullName).join(', ')}

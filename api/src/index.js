@@ -1,19 +1,19 @@
-import nodeBits, { GET, POST, PUT, DELETE, OPTIONS } from "node-bits";
-import nodeBitsExpress, { cors, bodyParser } from "node-bits-express";
-import nodeBitsSpa from "node-bits-spa";
+import nodeBits, {GET, POST, PUT, DELETE, OPTIONS} from 'node-bits';
+import nodeBitsExpress, {cors, bodyParser} from 'node-bits-express';
+import nodeBitsSpa from 'node-bits-spa';
 
-import { configureCompression } from "./util";
+import {configureCompression} from './util';
 
 nodeBits([
   nodeBitsExpress({
-    port: 4005,
+    port: process.env.port || 4005,
     configurations: [
-      cors({ methods: [GET, POST, PUT, DELETE, OPTIONS] }),
+      cors({methods: [GET, POST, PUT, DELETE, OPTIONS]}),
       bodyParser(),
-      configureCompression()
-    ]
+      configureCompression(),
+    ],
   }),
   nodeBitsSpa({
-    path: `${__dirname}/site`
-  })
+    path: `${__dirname}/site`,
+  }),
 ]);

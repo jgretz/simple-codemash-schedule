@@ -4,7 +4,6 @@ import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import path from 'path';
 import {EnvironmentPlugin} from 'webpack';
-import CopyWebpackPlugin from 'copy-webpack-plugin';
 import Stylish from 'webpack-stylish';
 
 export default {
@@ -36,7 +35,6 @@ export default {
       inject: true,
     }),
     new Stylish(),
-    new CopyWebpackPlugin([{from: './app/images', to: './'}]),
   ],
   module: {
     rules: [
@@ -65,7 +63,6 @@ export default {
               '@babel/plugin-proposal-object-rest-spread',
               '@babel/plugin-external-helpers',
               'babel-plugin-transform-react-remove-prop-types',
-              'transform-react-remove-prop-types',
             ],
           },
         },

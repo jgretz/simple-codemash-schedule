@@ -1,23 +1,33 @@
 import React from 'react';
+import {connect} from 'react-redux';
 
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
-// import InputBase from '@material-ui/core/InputBase';
-// import SearchIcon from '@material-ui/icons/Search';
+import IconButton from '@material-ui/core/IconButton';
+import FavoriteIcon from '@material-ui/icons/Favorite';
 import {withStyles} from '@material-ui/core/styles';
-import {fade} from '@material-ui/core/styles/colorManipulator';
+
+import {toggleFavoritesFilter} from '../../shared/actions';
+import {favoritesFilterSelector} from '../../shared/selectors';
 
 const styles = theme => ({
   root: {
     width: '100%',
   },
-  grow: {
-    flexGrow: 1,
-  },
   toolbar: {
     display: 'flex',
-    justifyContent: 'center',
+    flex: 1,
+    padding: '0 20px',
+  },
+  toolbarContent: {
+    display: 'flex',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+
+    width: '100%',
+    maxWidth: 1000,
+    margin: '0 auto',
   },
   title: {
     display: 'none',
@@ -25,63 +35,21 @@ const styles = theme => ({
       display: 'block',
     },
   },
-  search: {
-    position: 'relative',
-    borderRadius: theme.shape.borderRadius,
-    backgroundColor: fade(theme.palette.common.white, 0.15),
-    '&:hover': {
-      backgroundColor: fade(theme.palette.common.white, 0.25),
-    },
-    marginLeft: 0,
-    width: '100%',
-    [theme.breakpoints.up('sm')]: {
-      marginLeft: theme.spacing.unit,
-      width: 'auto',
-    },
-  },
-  searchIcon: {
-    width: theme.spacing.unit * 9,
-    height: '100%',
-    position: 'absolute',
-    pointerEvents: 'none',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  inputRoot: {
-    color: 'inherit',
-    width: '100%',
-  },
-  inputInput: {
-    paddingTop: theme.spacing.unit,
-    paddingRight: theme.spacing.unit,
-    paddingBottom: theme.spacing.unit,
-    paddingLeft: theme.spacing.unit * 10,
-    transition: theme.transitions.create('width'),
-    width: '100%',
-    [theme.breakpoints.up('sm')]: {
-      width: 120,
-      '&:focus': {
-        width: 200,
-      },
-    },
-  },
 });
 
-// const Search = ({classes}) => (
-//   <div className={classes.search}>
-//     <div className={classes.searchIcon}>
-//       <SearchIcon />
-//     </div>
-//     <InputBase
-//       placeholder="Search…"
-//       classes={{
-//         root: classes.inputRoot,
-//         input: classes.inputInput,
-//       }}
-//     />
-//   </div>
-// );
+const handleFavoriteClick = toggleFavoritesFilter => () => {
+  toggleFavoritesFilter();
+};
+
+const Filter = ({favoritesFilter, toggleFavoritesFilter}) => (
+  <IconButton
+    aria-label="Filter List To Favorites"
+    color={favoritesFilter ? 'secondary' : 'default'}
+    onClick={handleFavoriteClick(toggleFavoritesFilter)}
+  >
+    <FavoriteIcon />
+  </IconButton>
+);
 
 const Title = () => (
   <Typography variant="h6" color="inherit">
@@ -89,12 +57,25 @@ const Title = () => (
   </Typography>
 );
 
-const TitleBar = ({classes}) => (
+const TitleBar = ({classes, favoritesFilter, toggleFavoritesFilter}) => (
   <AppBar position="static" color="primary">
     <Toolbar className={classes.toolbar}>
-      <Title classes={classes} />
+      <div className={classes.toolbarContent}>
+        <Title classes={classes} />
+        <Filter
+          favoritesFilter={favoritesFilter}
+          toggleFavoritesFilter={toggleFavoritesFilter}
+        />
+      </div>
     </Toolbar>
   </AppBar>
 );
 
-export default withStyles(styles)(TitleBar);
+const mapStateToProps = state => ({
+  favoritesFilter: favoritesFilterSelector(state),
+});
+
+export default connect(
+  mapStateToProps,
+  {toggleFavoritesFilter},
+)(withStyles(styles)(TitleBar));

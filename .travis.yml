@@ -9,7 +9,7 @@ deploy:
   provider: heroku
   api_key:
     secure: YXEDqWV0Jqd9t563rjitk3kRr+tw/yO++mTgefNuvIGrhLlvA9Ifc1mvuHB8/m66hTaemYJ40embNSrWLnOB5xLtmtgjh9Sc0jlPdiGrreyvdIVZVAMW7Q0EiZXbuosOKcCJIVgWr1GtFQO/aTw2V8hnAziqPHTqz+e0mKsETCTcWYjawga2MNo5JQa0pGCG7we2VZF2ap0g0HKoiYYfAKIUCQ719o+avAO9AtC5Bs4o8f6fWQlkJljIuKMaGt1Zt2Qh6TLh1LSUuDT5SqfmeDMB+98HIHlfqoJ9vgP8KcrFV2b4NSXxd5ALLYtFqzWxIgIV4VfVWra+uaAsvDXD+YReo9zkpuQyC2q0tBbGkDHxMu/FPM/BXdojjOhz3hqIfYeXU6g97FnnTX1Tv0xWfYfNVUSFaDn/wnbaCWxek9ea0z/TJUrtgAdlh6xq28s3DiuPrrqvUk/uGXMKFEzyKi2cgaX7ka+AEKFrDkNTbqOVjHZgKXuTd6b0Sv/2CdsejBIdG54Ddc+yVwQk6WLSnOHtRRImAWZMluJD+8h/bR5xK9sBImE0cQ77K5F/dHe6MUFZwrwyJ8TncnI3bnOZVLhI7xElkWyPIeIuQ0ZH9M7y9xNjJNNRmkeHSEEDHer3yWtzeQ3yAohXxsBXQC1s7VA3u+4kQeDnazBLLN8cHo0=
-  app: simple-codemash-schedule
+  app: simplecodemashschedule
   skip_cleanup: true
   on:
     repo: jgretz/simple-codemash-schedule

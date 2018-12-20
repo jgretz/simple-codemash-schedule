@@ -3,8 +3,8 @@ import React from 'react';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
-import InputBase from '@material-ui/core/InputBase';
-import SearchIcon from '@material-ui/icons/Search';
+// import InputBase from '@material-ui/core/InputBase';
+// import SearchIcon from '@material-ui/icons/Search';
 import {withStyles} from '@material-ui/core/styles';
 import {fade} from '@material-ui/core/styles/colorManipulator';
 
@@ -14,6 +14,10 @@ const styles = theme => ({
   },
   grow: {
     flexGrow: 1,
+  },
+  toolbar: {
+    display: 'flex',
+    justifyContent: 'center',
   },
   title: {
     display: 'none',
@@ -64,33 +68,31 @@ const styles = theme => ({
   },
 });
 
-const Search = ({classes}) => (
-  <div className={classes.search}>
-    <div className={classes.searchIcon}>
-      <SearchIcon />
-    </div>
-    <InputBase
-      placeholder="Search…"
-      classes={{
-        root: classes.inputRoot,
-        input: classes.inputInput,
-      }}
-    />
-  </div>
-);
+// const Search = ({classes}) => (
+//   <div className={classes.search}>
+//     <div className={classes.searchIcon}>
+//       <SearchIcon />
+//     </div>
+//     <InputBase
+//       placeholder="Search…"
+//       classes={{
+//         root: classes.inputRoot,
+//         input: classes.inputInput,
+//       }}
+//     />
+//   </div>
+// );
 
 const Title = () => (
   <Typography variant="h6" color="inherit">
-    CodeMash Simple Schedule
+    Simple CodeMash Schedule
   </Typography>
 );
 
 const TitleBar = ({classes}) => (
   <AppBar position="static" color="primary">
-    <Toolbar>
+    <Toolbar className={classes.toolbar}>
       <Title classes={classes} />
-      <div className={classes.grow} />
-      <Search classes={classes} />
     </Toolbar>
   </AppBar>
 );

@@ -1,0 +1,16 @@
+language: node_js
+node_js:
+  - node
+after_success:
+  - yarn build
+before_deploy:
+  - cd ./lib
+deploy:
+  provider: heroku
+  api_key:
+    secure: diXEbZ1DgL7tvEKRTXRRIKfPQIJ59ynLXpJQ0LsuzrXta3gn/B3T4wdb/9YVN77acm7QbvFLyIzm4e0D/KiI+ctdgpeUhO/aO7A45RXlr1Q5ueCM4T1xnWiS6EEbJ+mNtv+gK/5BRHFtBcXkC+F9aQALa/so3drYNI6a13/haVT96nBR2Anidz5rhjU1z/hjPR8+JgLkCkFpqUWYCHZB+4V+kL55XWcOEauLO25TXbkr9BZ6S8P3b/WXBD5OjiaSlX0s2dnT8DWRKu+pgPsuJmlaY4ANv86VPYL452EZlYj9mlWbiU8nsaY5PPmV6pxjl9p8FMYr1U6s3RiN0h0H1pnUSMP1U9D1yyLT8r/YN0Y7bjE2TJzUbZPhDXl5PJhc6+N5NdgM5ZkZ+uCngzaxZSjg5ib8LLzE2xeT01lE9hCoizF4ybLcInyHi0wvUSUX/JZZHXRZ+hG3Fx48tqPYoxgb3a0e05vZE7EM7i00raXnuZQ3XnPBmcfNso/6+99q1NrND+ykvdF01b5SfKPp7WrSmslLTiCvVa0+vPRpujk5glPlNOoeOgClXedF0B2oEqV0wuAK9AFZjxoT0qW3wNNMgIwTDvGPmb6hINr+tyMZyzu7oY/9ay/pLGv7ogO9yBL93Mj67lUFoxsBYi4huvSOYDLcDkrVqIAg8xigs+c=
+  app: simplecodemashschedule
+  skip_cleanup: true
+  on:
+    branch: master
+    repo: jgretz/simple-codemash-schedule
